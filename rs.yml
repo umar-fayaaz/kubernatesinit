@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: instagram
+spec:
+  replicas: 2
+  selector:
+    matchExpressions:
+      - {key: myname, operator: In, values: [signup, login]}
+      - {key: env, operator: NotIn, values: [production]}
+  template:
+    metadata:
+      labels:
+        myname: login
+    spec:
+      containers:
+        - name: login
+          image: ubuntu
+          command: ["/bin/bash", "-c", "while true; do echo login; sleep 1; done"]
