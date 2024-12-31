@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: instagram
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      name: devops
+  template:
+    metadata:
+      name: jsp
+      labels:
+        name: devops
+    spec:
+      containers:
+        - name: login
+          image: ubuntu
+          command: ["/bin/bash", "-c", "while true; do echo login; sleep 1; done"]
